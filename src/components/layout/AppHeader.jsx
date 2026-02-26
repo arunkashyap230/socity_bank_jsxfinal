@@ -1,9 +1,24 @@
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, Menu, X } from "lucide-react";
 
-const AppHeader = () => {
+const AppHeader = ({ isSidebarOpen, onToggleSidebar }) => {
   return (
     <header className="app-header">
-      <h2>Welcome back, Admin!</h2>
+      <div className="header-title-row">
+        <button
+          className="mobile-sidebar-toggle"
+          onClick={onToggleSidebar}
+          aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+          aria-expanded={isSidebarOpen}
+          aria-controls="app-sidebar"
+        >
+          {isSidebarOpen ? (
+            <X style={{ width: 18, height: 18 }} />
+          ) : (
+            <Menu style={{ width: 18, height: 18 }} />
+          )}
+        </button>
+        <h2>Welcome back, Admin!</h2>
+      </div>
       <div className="header-controls">
         <div className="header-search">
           <Search />
