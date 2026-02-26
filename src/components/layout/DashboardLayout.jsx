@@ -4,11 +4,11 @@ import AppHeader from "./AppHeader";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex min-h-screen">
+    <div className="app-layout">
       <AppSidebar />
-      <div className="flex-1 flex flex-col">
+      <div className="app-main-area">
         <AppHeader />
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="app-content">
           <Outlet />
         </main>
       </div>

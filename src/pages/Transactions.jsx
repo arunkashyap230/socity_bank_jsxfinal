@@ -1,6 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const transactions = [
   { date: "4/5/2025", desc: "Business account opening", amount: "+₹75000.75", type: "CREDIT" },
@@ -10,76 +8,75 @@ const transactions = [
 ];
 
 const Transactions = () => {
+  const [activeTab, setActiveTab] = useState("deposit");
+
   return (
-    <div className="space-y-6 animate-fade-in">
-      <h1 className="text-2xl font-bold text-foreground">Transaction Management</h1>
+    <div className="page-wrapper animate-fade-in">
+      <h1 className="page-title">Transaction Management</h1>
 
-      <Tabs defaultValue="deposit">
-        <TabsList>
-          <TabsTrigger value="deposit">CASH DEPOSIT</TabsTrigger>
-          <TabsTrigger value="withdrawal">WITHDRAWAL</TabsTrigger>
-          <TabsTrigger value="transfer">FUND TRANSFER</TabsTrigger>
-          <TabsTrigger value="history">HISTORY</TabsTrigger>
-        </TabsList>
+      <div className="tabs-list">
+        {["deposit", "withdrawal", "transfer", "history"].map((tab) => (
+          <button
+            key={tab}
+            className={`tabs-trigger ${activeTab === tab ? "active" : ""}`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab === "deposit" ? "CASH DEPOSIT" : tab === "withdrawal" ? "WITHDRAWAL" : tab === "transfer" ? "FUND TRANSFER" : "HISTORY"}
+          </button>
+        ))}
+      </div>
 
-        <TabsContent value="deposit" className="mt-4">
-          <div className="grid lg:grid-cols-2 gap-6">
-            <div className="bg-card rounded-xl shadow-sm border border-border p-6 space-y-4">
-              <h3 className="text-lg font-semibold text-foreground">New Transaction</h3>
-              <div>
-                <label className="text-sm text-muted-foreground">Select Member</label>
-                <select className="w-full border border-input rounded-md px-3 py-2 mt-1 bg-card text-sm">
-                  <option>Select Member</option>
-                </select>
+      {activeTab === "deposit" && (
+        <div className="grid-2-lg">
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <h3 className="card-title" style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>New Transaction</h3>
+            <div className="form-section">
+              <div className="form-group">
+                <label>Select Member</label>
+                <select className="input"><option>Select Member</option></select>
               </div>
-              <div>
-                <label className="text-sm text-muted-foreground">Account</label>
-                <Input placeholder="Account -" className="mt-1" />
+              <div className="form-group">
+                <label>Account</label>
+                <input className="input" placeholder="Account -" />
               </div>
-              <div>
-                <label className="text-sm text-muted-foreground">Amount (₹)</label>
-                <Input placeholder="Amount *" type="number" className="mt-1" />
+              <div className="form-group">
+                <label>Amount (₹)</label>
+                <input className="input" placeholder="Amount *" type="number" />
               </div>
-              <div>
-                <label className="text-sm text-muted-foreground">Narration</label>
-                <Input placeholder="Narration" className="mt-1" />
+              <div className="form-group">
+                <label>Narration</label>
+                <input className="input" placeholder="Narration" />
               </div>
-              <div className="flex gap-3">
-                <Button>DEPOSIT</Button>
-                <Button variant="outline">RESET</Button>
-              </div>
-            </div>
-
-            <div className="bg-card rounded-xl shadow-sm border border-border p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Recent Transactions</h3>
-              <div className="space-y-3">
-                {transactions.map((tx, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg border border-border">
-                    <div>
-                      <p className="text-sm text-muted-foreground">{tx.date}</p>
-                      <p className="text-sm text-foreground">{tx.desc}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-semibold text-foreground">{tx.amount}</p>
-                      <span className="status-chip status-completed">{tx.type}</span>
-                    </div>
-                  </div>
-                ))}
+              <div className="form-actions">
+                <button className="btn btn-primary">DEPOSIT</button>
+                <button className="btn btn-outline">RESET</button>
               </div>
             </div>
           </div>
-        </TabsContent>
 
-        <TabsContent value="withdrawal" className="mt-4">
-          <div className="bg-card rounded-xl shadow-sm border border-border p-8 text-center text-muted-foreground">Withdrawal module coming soon</div>
-        </TabsContent>
-        <TabsContent value="transfer" className="mt-4">
-          <div className="bg-card rounded-xl shadow-sm border border-border p-8 text-center text-muted-foreground">Fund Transfer module coming soon</div>
-        </TabsContent>
-        <TabsContent value="history" className="mt-4">
-          <div className="bg-card rounded-xl shadow-sm border border-border p-8 text-center text-muted-foreground">Transaction History coming soon</div>
-        </TabsContent>
-      </Tabs>
+          <div className="card" style={{ padding: '1.5rem' }}>
+            <h3 className="card-title" style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>Recent Transactions</h3>
+            <div className="gap-stack">
+              {transactions.map((tx, i) => (
+                <div key={i} className="tx-item">
+                  <div className="tx-item-left">
+                    <p>{tx.date}</p>
+                    <p>{tx.desc}</p>
+                  </div>
+                  <div className="tx-item-right">
+                    <p>{tx.amount}</p>
+                    <span className="status-chip status-completed">{tx.type}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === "withdrawal" && <div className="card placeholder-box">Withdrawal module coming soon</div>}
+      {activeTab === "transfer" && <div className="card placeholder-box">Fund Transfer module coming soon</div>}
+      {activeTab === "history" && <div className="card placeholder-box">Transaction History coming soon</div>}
     </div>
   );
 };

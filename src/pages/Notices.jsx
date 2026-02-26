@@ -1,7 +1,7 @@
 const Notices = () => (
-  <div className="space-y-6 animate-fade-in">
-    <h1 className="text-2xl font-bold text-foreground">Notices</h1>
-    <div className="bg-card rounded-xl shadow-sm border border-border p-8 text-center text-muted-foreground">
+  <div className="page-wrapper animate-fade-in">
+    <h1 className="page-title">Notices</h1>
+    <div className="card placeholder-box">
       Notice management coming soon. Create and manage society announcements and notifications.
     </div>
   </div>
