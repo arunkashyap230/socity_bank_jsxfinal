@@ -15,32 +15,28 @@ const recentTransactions = [
   { id: "TX005", date: "2025-09-16", member: "Vikram Lal", type: "Deposit", amount: "₹ 8,500", status: "Completed" },
 ];
 
-const statusClass = {
-  Completed: "status-completed",
-  Pending: "status-pending",
-  Failed: "status-failed",
-};
+const statusClass = { Completed: "status-completed", Pending: "status-pending", Failed: "status-failed" };
 
 const Dashboard = () => {
   return (
-    <div className="space-y-6 animate-fade-in">
-      <h1 className="text-2xl font-bold text-foreground">Welcome back, Admin</h1>
+    <div className="page-wrapper animate-fade-in">
+      <h1 className="page-title">Welcome back, Admin</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid-4">
         {stats.map((s) => {
           const Icon = s.icon;
           return (
             <div key={s.label} className={`stat-card ${s.className}`}>
-              <div className="flex items-start justify-between">
+              <div className="stat-header">
                 <div>
-                  <p className="text-sm opacity-80">{s.label}</p>
-                  <p className="text-3xl font-bold mt-1">{s.value}</p>
-                  <p className="text-xs opacity-70 mt-1">{s.sub}</p>
+                  <p className="stat-label">{s.label}</p>
+                  <p className="stat-value">{s.value}</p>
+                  <p className="stat-sub">{s.sub}</p>
                 </div>
-                <Icon className="w-8 h-8 opacity-40" />
+                <Icon style={{ width: 32, height: 32 }} className="stat-icon" />
               </div>
-              <div className="flex items-center gap-1 mt-3 text-xs">
-                <TrendingUp className="w-3 h-3" />
+              <div className="stat-trend">
+                <TrendingUp style={{ width: 12, height: 12 }} />
                 <span>{s.trend}</span>
               </div>
             </div>
@@ -48,42 +44,36 @@ const Dashboard = () => {
         })}
       </div>
 
-      <div className="bg-card rounded-xl shadow-sm border border-border">
-        <div className="p-6 pb-4">
-          <h2 className="text-xl font-bold text-foreground">Recent Transactions</h2>
-          <p className="text-sm text-muted-foreground">Latest 5 transactions from your society</p>
+      <div className="card">
+        <div className="card-header">
+          <h2 className="card-title">Recent Transactions</h2>
+          <p className="card-desc">Latest 5 transactions from your society</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="data-table">
             <thead>
               <tr className="table-header-row">
-                <th className="text-left px-6 py-3 text-sm font-semibold">Transaction ID</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Date</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Member</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Type</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Amount</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Status</th>
-                <th className="text-left px-6 py-3 text-sm font-semibold">Action</th>
+                <th>Transaction ID</th>
+                <th>Date</th>
+                <th>Member</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {recentTransactions.map((tx) => (
-                <tr key={tx.id} className="border-b border-border hover:bg-muted/50 transition-colors">
-                  <td className="px-6 py-4 text-sm font-medium text-primary">{tx.id}</td>
-                  <td className="px-6 py-4 text-sm text-muted-foreground">{tx.date}</td>
-                  <td className="px-6 py-4 text-sm text-foreground">{tx.member}</td>
-                  <td className="px-6 py-4">
-                    <span className="px-3 py-1 rounded-md border border-border text-xs text-foreground">
-                      {tx.type}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm font-medium text-foreground">{tx.amount}</td>
-                  <td className="px-6 py-4">
-                    <span className={`status-chip ${statusClass[tx.status]}`}>{tx.status}</span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <button className="p-1 hover:bg-muted rounded">
-                      <MoreVertical className="w-4 h-4 text-muted-foreground" />
+                <tr key={tx.id}>
+                  <td className="td-primary">{tx.id}</td>
+                  <td className="td-muted">{tx.date}</td>
+                  <td className="td-default">{tx.member}</td>
+                  <td><span className="type-badge">{tx.type}</span></td>
+                  <td className="td-default" style={{ fontWeight: 500 }}>{tx.amount}</td>
+                  <td><span className={`status-chip ${statusClass[tx.status]}`}>{tx.status}</span></td>
+                  <td>
+                    <button className="action-btn">
+                      <MoreVertical style={{ width: 16, height: 16, color: 'hsl(var(--muted-foreground))' }} />
                     </button>
                   </td>
                 </tr>
@@ -91,10 +81,8 @@ const Dashboard = () => {
             </tbody>
           </table>
         </div>
-        <div className="p-4 text-center">
-          <a href="/transactions" className="text-sm text-primary font-medium hover:underline">
-            View All Transactions →
-          </a>
+        <div className="view-all-link">
+          <a href="/transactions">View All Transactions →</a>
         </div>
       </div>
     </div>

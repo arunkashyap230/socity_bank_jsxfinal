@@ -1,14 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard,
-  Users,
-  Building2,
-  ArrowLeftRight,
-  Wallet,
-  ChevronDown,
-  FileText,
-  Bell,
-  BarChart3,
+  LayoutDashboard, Users, Building2, ArrowLeftRight,
+  Wallet, ChevronDown, FileText, Bell, BarChart3,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -18,9 +11,7 @@ const navItems = [
   { label: "Accounts", icon: Building2, path: "/accounts" },
   { label: "Transaction", icon: ArrowLeftRight, path: "/transactions" },
   {
-    label: "Loans",
-    icon: Wallet,
-    path: "/loans",
+    label: "Loans", icon: Wallet, path: "/loans",
     children: [
       { label: "Loan List", path: "/loans" },
       { label: "Apply Loan", path: "/loans/apply" },
@@ -41,18 +32,16 @@ const AppSidebar = () => {
     item.children?.some((c) => location.pathname.startsWith(c.path));
 
   return (
-    <aside className="w-64 min-h-screen flex flex-col bg-sidebar-bg">
-      <div className="p-6 flex flex-col items-center gap-1 border-b border-sidebar-hover">
-        <div className="w-12 h-12 rounded-xl bg-sidebar-active flex items-center justify-center">
-          <Building2 className="w-7 h-7 text-primary-foreground" />
+    <aside className="sidebar">
+      <div className="sidebar-brand">
+        <div className="sidebar-brand-icon">
+          <Building2 style={{ width: 28, height: 28 }} />
         </div>
-        <h1 className="text-lg font-bold text-primary-foreground mt-1">
-          Society Bank
-        </h1>
-        <p className="text-xs text-sidebar-fg/60">Premium Banking Solutions</p>
+        <h1>Society Bank</h1>
+        <p>Premium Banking Solutions</p>
       </div>
 
-      <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+      <nav className="sidebar-nav">
         {navItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.path) || isParentActive(item);
@@ -62,26 +51,25 @@ const AppSidebar = () => {
             return (
               <div key={item.label}>
                 <button
-                  onClick={() =>
-                    setOpenMenu(isOpen ? null : item.label)
-                  }
-                  className={`sidebar-link w-full justify-between ${active ? "active" : ""}`}
+                  onClick={() => setOpenMenu(isOpen ? null : item.label)}
+                  className={`sidebar-link sidebar-link-parent ${active ? "active" : ""}`}
                 >
-                  <span className="flex items-center gap-3">
-                    <Icon className="w-5 h-5" />
+                  <span className="sidebar-link-left">
+                    <Icon style={{ width: 20, height: 20 }} />
                     {item.label}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                    style={{ width: 16, height: 16 }}
+                    className={`chevron-rotate ${isOpen ? "open" : ""}`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="ml-8 mt-1 space-y-1">
+                  <div className="sidebar-children">
                     {item.children.map((child) => (
                       <Link
                         key={child.path}
                         to={child.path}
-                        className={`sidebar-link text-xs py-2 ${isActive(child.path) ? "active" : ""}`}
+                        className={`sidebar-link ${isActive(child.path) ? "active" : ""}`}
                       >
                         {child.label}
                       </Link>
@@ -98,19 +86,19 @@ const AppSidebar = () => {
               to={item.path}
               className={`sidebar-link ${active ? "active" : ""}`}
             >
-              <Icon className="w-5 h-5" />
+              <Icon style={{ width: 20, height: 20 }} />
               {item.label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-sidebar-hover">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-green-400" />
-          <span className="text-xs text-sidebar-fg/70">System Online</span>
+      <div className="sidebar-footer">
+        <div className="status-row">
+          <span className="status-dot" />
+          <span className="status-text">System Online</span>
         </div>
-        <p className="text-xs text-sidebar-fg/50 mt-1">v2.1 • Last sync: Today</p>
+        <p className="version-text">v2.1 • Last sync: Today</p>
       </div>
     </aside>
   );
