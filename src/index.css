@@ -309,11 +309,11 @@ table {
 }
 .sidebar-footer .status-text {
   font-size: 0.75rem;
-  color: hsl(var(--sidebar-fg) / 0.7);
+  color: #fff;
 }
 .sidebar-footer .version-text {
   font-size: 0.75rem;
-  color: hsl(var(--sidebar-fg) / 0.5);
+  color: #fff;
   margin-top: 0.25rem;
 }
 .chevron-rotate {
@@ -1276,6 +1276,495 @@ select.input {
   margin-top: 0.75rem;
 }
 
+/* Loan workflow */
+.loan-workflow-card {
+  padding: 1rem;
+}
+.loan-status-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+.loan-status-tab {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  background: hsl(var(--card));
+}
+.loan-status-tab.active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+}
+.loan-workflow-table {
+  min-width: 68rem;
+}
+.loan-empty-row {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 1.25rem !important;
+}
+
+/* Reports page */
+.reports-download-btn {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+.reports-card {
+  padding: 1rem;
+}
+.reports-form-wrap {
+  border: 1px solid hsl(var(--border));
+  border-left: 3px solid hsl(var(--primary));
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.reports-form-wrap h3 {
+  font-size: 1.875rem;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.75rem;
+}
+.reports-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.reports-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.875rem 0;
+}
+.reports-empty-row {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 1.25rem !important;
+}
+
+/* Transaction ke page ke andr Fund transfer */
+.fund-transfer-card {
+  padding: 1rem;
+}
+.fund-transfer-subtitle {
+  font-size: 1.5rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1rem;
+}
+.fund-transfer-form {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.fund-transfer-form .form-group:last-of-type {
+  grid-column: 1 / -1;
+}
+.fund-transfer-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Accounts page */
+.accounts-card {
+  padding: 1rem;
+}
+.accounts-filters-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0 1rem;
+}
+.accounts-filters-row .search-wrapper {
+  position: relative;
+  flex: 1;
+}
+.accounts-filters-row .search-wrapper svg {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: hsl(var(--muted-foreground));
+}
+.accounts-filter-group {
+  min-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.account-type-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+.account-type-savings {
+  background: #0ea5e9;
+}
+.account-type-fd {
+  background: #9333ea;
+}
+.account-type-rd {
+  background: #0284c7;
+}
+.account-type-current {
+  background: #16a34a;
+}
+.accounts-table-wrap .data-table {
+  min-width: 70rem;
+}
+
+/* account ke andr wala transaction */
+
+.transactions-card {
+  padding: 1rem;
+}
+.transactions-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+.transactions-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 1.5rem;
+}
+.transactions-form,
+.transactions-list {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.transactions-form h4,
+.transactions-list h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.tx-type-group p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+.tx-type-options {
+  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.tx-type-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+  color: hsl(var(--muted-foreground));
+}
+.tx-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.tx-list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.tx-date {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+.tx-desc {
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground));
+  margin-top: 0.25rem;
+}
+.tx-right {
+  text-align: right;
+}
+.tx-amount {
+  font-weight: 700;
+  color: hsl(var(--success));
+  margin-bottom: 0.35rem;
+}
+
+/* Account ke andr wala new account page*/
+.add-account-card {
+  padding: 1rem;
+}
+.add-account-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+.add-account-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.add-account-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.add-account-step-badge {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.add-account-step-badge.active {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+.add-account-step-label {
+  font-size: 0.9375rem;
+  color: hsl(var(--muted-foreground));
+}
+.add-account-step-label.active {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+.add-account-panel {
+  margin-top: 1rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.add-account-panel h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.add-account-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Member registration */
+.registration-card {
+  padding: 1.25rem;
+}
+.registration-stepper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.step-badge {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.step-badge.active,
+.step-badge.completed {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+.step-text {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+.step-text.active {
+  color: hsl(var(--foreground));
+  font-weight: 500;
+}
+.registration-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.registration-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Fee collection */
+.fee-collection-card {
+  padding: 1rem 1.25rem;
+}
+.fee-collection-header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.fee-collection-header h3 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+.fee-collection-list {
+  display: flex;
+  flex-direction: column;
+}
+.fee-row {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0.25rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.fee-row:last-child {
+  border-bottom: none;
+}
+.fee-member-name {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+}
+.fee-member-id {
+  font-size: 1rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+}
+.fee-amount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+.fee-date {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+}
+.fee-status {
+  justify-self: center;
+  background: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.fee-action-btn {
+  justify-self: end;
+  letter-spacing: 0.02em;
+}
+
+/* Profile management */
+.profile-management-card {
+  padding: 1rem;
+}
+.profile-management-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.45fr;
+  gap: 1rem;
+}
+.profile-member-list,
+.profile-member-detail {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.profile-member-list h3,
+.profile-member-detail h3 {
+  font-size: 1.875rem;
+  color: hsl(var(--foreground));
+  margin-bottom: 1rem;
+}
+.profile-member-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 28rem;
+  overflow-y: auto;
+}
+.profile-member-item {
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 0.875rem;
+  text-align: left;
+  background: hsl(var(--card));
+}
+.profile-member-item.active {
+  background: hsl(var(--muted));
+  border-color: hsl(var(--primary) / 0.4);
+}
+.profile-member-item-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+.profile-member-item-meta {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+.profile-detail-group + .profile-detail-group {
+  margin-top: 1.25rem;
+}
+.profile-detail-group h4 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--foreground));
+}
+.profile-detail-group p {
+  font-size: 1rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.35rem;
+}
+.profile-detail-group p strong {
+  color: hsl(var(--foreground));
+}
+.profile-kyc-chip {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.profile-kyc-chip.verified {
+  background: #dcfce7;
+  color: #15803d;
+}
+.profile-kyc-chip.pending {
+  background: #fef9c3;
+  color: #a16207;
+}
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 1023px) {
   .app-layout {
@@ -1367,8 +1856,128 @@ select.input {
   }
 
   .tabs-trigger {
-    flex: 0 0 auto;
+    flex-shrink: 0;
   }
+
+  .registration-stepper {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accounts-filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .fund-transfer-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .reports-form-wrap h3 {
+    font-size: 1.25rem;
+  }
+
+  .loan-status-tabs {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .reports-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reports-actions {
+    flex-wrap: wrap;
+  }
+
+  .fund-transfer-form {
+    grid-template-columns: 1fr;
+  }
+
+  .fund-transfer-actions {
+    justify-content: flex-start;
+  }
+
+  .accounts-filter-group {
+    min-width: 0;
+  }
+  /* account wale ke andr transaction */
+
+  .transactions-title {
+    font-size: 1.375rem;
+  }
+
+  .transactions-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .transactions-form h4,
+  .transactions-list h4 {
+    font-size: 1.2rem;
+  }
+
+  .tx-list-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tx-right {
+    width: 100%;
+    text-align: left;
+  }
+
+  .add-account-title {
+    font-size: 1.375rem;
+  }
+
+  .add-account-stepper {
+    grid-template-columns: 1fr;
+  }
+
+  .add-account-panel h4 {
+    font-size: 1.2rem;
+  }
+
+  .fee-collection-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .fee-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.875rem 0;
+  }
+
+  .fee-member-name {
+    font-size: 1.125rem;
+  }
+
+  .fee-status,
+  .fee-action-btn {
+    justify-self: flex-start;
+  }
+
+  .profile-management-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-member-list h3,
+  .profile-member-detail h3 {
+    font-size: 1.375rem;
+  }
+
+  .profile-member-items {
+    max-height: 16rem;
+  }
+
+  .profile-member-item-name {
+    font-size: 1rem;
+  }
+
   .app-header {
     height: 4rem;
     flex-direction: row;

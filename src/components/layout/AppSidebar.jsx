@@ -6,8 +6,6 @@ import {
   ArrowLeftRight,
   Wallet,
   ChevronDown,
-  FileText,
-  Bell,
   BarChart3,
   X,
 } from "lucide-react";
@@ -23,14 +21,11 @@ const navItems = [
     icon: Wallet,
     path: "/loans",
     children: [
-      { label: "Loan List", path: "/loans" },
-      { label: "Apply Loan", path: "/loans/apply" },
-      { label: "Guarantors", path: "/loans/guarantors" },
+      { label: "Loan Form", path: "/loans/apply" },
+      { label: "Loan Status", path: "/loans" },
     ],
   },
   { label: "Reports", icon: BarChart3, path: "/reports" },
-  { label: "Notices", icon: Bell, path: "/notices" },
-  { label: "Summary", icon: FileText, path: "/summary" },
 ];
 
 const AppSidebar = ({ isSidebarOpen, onCloseSidebar }) => {
