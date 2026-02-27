@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 
 const transactions = [
   {
@@ -27,8 +28,35 @@ const transactions = [
   },
 ];
 
+const historySeed = [
+  {
+    txnId: "TX-1001",
+    memberId: "MSR-0001",
+    accountId: "SAV-10001",
+    memberName: "Satyam Ray",
+    type: "Deposit",
+    mode: "Cash",
+    amount: "₹ 25,000",
+    narration: "Monthly saving",
+    createdAt: "2026-02-24",
+  },
+  {
+    txnId: "TX-1002",
+    memberId: "MSR-0002",
+    accountId: "SAV-10011",
+    memberName: "Ananya Singh",
+    type: "Transfer",
+    mode: "UPI",
+    amount: "₹ 12,000",
+    narration: "Fund transfer",
+    createdAt: "2026-02-23",
+  },
+];
+
 const Transactions = () => {
+  const members = useSelector((state) => state.members.items);
   const [activeTab, setActiveTab] = useState("deposit");
+  const [selectedMember, setSelectedMember] = useState("");
   const [transferForm, setTransferForm] = useState({
     fromAccount: "",
     transferTo: "",
@@ -37,6 +65,11 @@ const Transactions = () => {
     narration: "",
   });
 
+  const historyRows = useMemo(() => {
+    if (!selectedMember) return historySeed;
+    return historySeed.filter((row) => row.memberId === selectedMember);
+  }, [selectedMember]);
+
   const updateTransferField = (field, value) => {
     setTransferForm((prev) => ({ ...prev, [field]: value }));
   };
@@ -44,6 +77,22 @@ const Transactions = () => {
   return (
     <div className="page-wrapper animate-fade-in">
       <h1 className="page-title">Transaction Management</h1>
+
+      <div className="transaction-member-filter">
+        <label>Select Member</label>
+        <select
+          className="input"
+          value={selectedMember}
+          onChange={(e) => setSelectedMember(e.target.value)}
+        >
+          <option value="">All Members</option>
+          {members.map((member) => (
+            <option key={member.id} value={member.id}>
+              {member.id} • {member.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="tabs-list">
         {["deposit", "withdrawal", "transfer", "history"].map((tab) => (
@@ -74,10 +123,12 @@ const Transactions = () => {
             </h3>
             <div className="form-section">
               <div className="form-group">
-                <label>Select Member</label>
-                <select className="input">
-                  <option>Select Member</option>
-                </select>
+                <label>Selected Member</label>
+                <input
+                  className="input"
+                  value={selectedMember || "All Members"}
+                  readOnly
+                />
               </div>
               <div className="form-group">
                 <label>Account</label>
@@ -130,8 +181,7 @@ const Transactions = () => {
           Withdrawal module coming soon
         </div>
       )}
-      {/* {activeTab === "transfer" && <div className="card placeholder-box">Fund Transfer module coming soon</div>}
-      {activeTab === "history" && <div className="card placeholder-box">Transaction History coming soon</div>} */}
+
       {activeTab === "transfer" && (
         <div className="card fund-transfer-card">
           <p className="fund-transfer-subtitle">
@@ -209,6 +259,55 @@ const Transactions = () => {
               <button className="btn btn-primary">TRANSFER</button>
               <button className="btn btn-outline">RESET</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === "history" && (
+        <div className="card transaction-history-card">
+          <p className="transaction-history-subtitle">
+            Please select a member to perform transactions
+          </p>
+          <h3 className="transaction-history-title">Transaction History</h3>
+          <div className="overflow-x-auto">
+            <table className="data-table transaction-history-table">
+              <thead>
+                <tr className="table-header-row">
+                  <th>Txn ID</th>
+                  <th>Member ID</th>
+                  <th>Account ID</th>
+                  <th>Member Name</th>
+                  <th>Type</th>
+                  <th>Mode</th>
+                  <th>Amount</th>
+                  <th>Narration</th>
+                  <th>Created At</th>
+                </tr>
+              </thead>
+              <tbody>
+                {historyRows.length === 0 ? (
+                  <tr>
+                    <td colSpan={9} className="reports-empty-row">
+                      No history found
+                    </td>
+                  </tr>
+                ) : (
+                  historyRows.map((row) => (
+                    <tr key={row.txnId}>
+                      <td className="td-primary">{row.txnId}</td>
+                      <td>{row.memberId}</td>
+                      <td>{row.accountId}</td>
+                      <td>{row.memberName}</td>
+                      <td>{row.type}</td>
+                      <td>{row.mode}</td>
+                      <td>{row.amount}</td>
+                      <td>{row.narration}</td>
+                      <td>{row.createdAt}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       )}

@@ -295,6 +295,23 @@ table {
   padding: 1rem;
   border-top: 1px solid hsl(var(--sidebar-hover));
 }
+
+.sidebar-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #fb7185;
+  font-weight: 600;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(251, 113, 133, 0.28);
+  background: rgba(251, 113, 133, 0.08);
+}
+.sidebar-logout-btn:hover {
+  background: rgba(251, 113, 133, 0.16);
+}
 .sidebar-footer .status-dot {
   width: 0.5rem;
   height: 0.5rem;
@@ -1280,6 +1297,32 @@ select.input {
 .loan-workflow-card {
   padding: 1rem;
 }
+.loan-form-page {
+  min-height: calc(100vh - 8rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loan-application-card {
+  width: 100%;
+  max-width: 42rem;
+  padding: 1.5rem;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+.loan-form-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.loan-application-fields {
+  display: grid;
+  gap: 0.85rem;
+}
+.loan-application-submit {
+  margin-top: 0.35rem;
+  width: 100%;
+}
+
 .loan-status-tabs {
   display: inline-flex;
   align-items: center;
@@ -1310,8 +1353,29 @@ select.input {
 }
 
 /* Reports page */
+
+/* Reports page */
 .reports-download-btn {
   background: linear-gradient(135deg, #7c3aed, #9333ea);
+  margin-bottom: 1rem;
+}
+.reports-tabs-list {
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid hsl(var(--border));
+  margin-bottom: 1rem;
+}
+.reports-tabs-list .tabs-trigger {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 0.45rem 0.7rem;
+  color: hsl(var(--muted-foreground));
+}
+.reports-tabs-list .tabs-trigger.active {
+  color: hsl(var(--foreground));
+  border-bottom-color: hsl(var(--primary));
+  background: transparent;
 }
 .reports-card {
   padding: 1rem;
@@ -1323,7 +1387,7 @@ select.input {
   padding: 1rem;
 }
 .reports-form-wrap h3 {
-  font-size: 1.875rem;
+  font-size: 1.75rem;
   color: hsl(var(--foreground));
   margin-bottom: 0.75rem;
 }
@@ -2045,5 +2109,264 @@ select.input {
   .table-header-row th {
     padding: 0.75rem;
     font-size: 0.8125rem;
+  }
+}
+
+@@ -2025,25 +2025,47 @@ select.input {
+}
+
+.filters-row {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filters-row .search-wrapper {
+  width: 100%;
+}
+
+.filter-group {
+  width: 100%;
+}
+
+.filter-group select {
+  width: 100%;
+}
+
+.data-table td,
+.table-header-row th {
+  padding: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+/* ==================== LOGIN PAGE ==================== */
+.login-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: #f3f4f6;
+}
+
+.login-brand-panel {
+  background: linear-gradient(135deg, hsl(224 68% 49%), hsl(210 72% 56%));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-brand-inner {
+  max-width: 440px;
+}
+
+.login-brand-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.login-brand-icon svg {
+  width: 52px;
+  height: 52px;
+}
+
+.login-brand-inner h1 {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.login-brand-inner p {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 2rem;
+}
+
+.login-feature-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
+.login-feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.login-feature-list li::before {
+  content: "•";
+  color: #f59e0b;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.login-form-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-form-card {
+  width: 100%;
+  max-width: 560px;
+}
+
+.login-form-card h2 {
+  font-size: 3.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 1.9rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 1.5rem;
+}
+
+.login-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  padding: 0 0.75rem;
+}
+
+.login-input-wrap svg {
+  width: 18px;
+  height: 18px;
+  color: hsl(var(--muted-foreground));
+}
+
+.login-input-wrap .input {
+  border: 0;
+  box-shadow: none;
+  padding-left: 0;
+  background: transparent;
+}
+
+.login-eye {
+  margin-left: auto;
+}
+
+.login-meta-row {
+  margin: 0.25rem 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-remember {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.login-link-btn {
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+
+.login-error {
+  color: #dc2626;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.login-submit-btn {
+  width: 100%;
+  height: 2.9rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.login-demo {
+  text-align: center;
+  background: #eef0f3;
+  border-radius: 0.5rem;
+  padding: 0.65rem;
+  color: hsl(var(--muted-foreground));
+}
+
+@media (max-width: 900px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand-panel {
+    min-height: 40vh;
+  }
+
+  .login-brand-inner {
+    text-align: center;
+  }
+
+  .login-brand-icon {
+    margin: 0 auto 1rem;
+  }
+
+  .login-feature-list {
+    display: none;
+  }
+
+  .login-form-card {
+    max-width: 560px;
+  }
+
+  .login-form-card h2 {
+    font-size: 2.6rem;
+  }
+
+  .login-subtitle,
+  .login-brand-inner p {
+    font-size: 1.6rem;
+  }
+}
+
+.transaction-member-filter {
+  max-width: 24rem;
+  margin-bottom: 1rem;
+}
+.transaction-member-filter label {
+  display: block;
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.25rem;
+}
+.transaction-history-card {
+  padding: 1rem;
+}
+.transaction-history-subtitle {
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 0.75rem;
+}
+.transaction-history-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.transaction-history-table {
+  min-width: 62rem;
+}
+
+@media (max-width: 767px) {
+  .transaction-member-filter {
+    max-width: 100%;
+  }
+
+  .transaction-history-title {
+    font-size: 1.25rem;
+  }
+
+  .transaction-history-card {
+    padding: 0.75rem;
   }
 }

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
@@ -8,6 +8,10 @@ import {
   ChevronDown,
   BarChart3,
   X,
+  ShieldCheck,
+  BellRing,
+  ChartNoAxesCombined,
+  LogOut,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -23,18 +27,34 @@ const navItems = [
     children: [
       { label: "Loan Form", path: "/loans/apply" },
       { label: "Loan Status", path: "/loans" },
+      // { label: "Select Member", path: "/loans/member" },
+      // { label: "Loan Details", path: "/loans/details" },
+      // { label: "Guarantor", path: "/loans/guarantor" },
+      // { label: "Bank Info", path: "/loans/bank" },
+      // { label: "Confirmation", path: "/loans/confirm" },
     ],
   },
+  { label: "Guarantors", icon: ShieldCheck, path: "/guarantors" },
   { label: "Reports", icon: BarChart3, path: "/reports" },
+  { label: "Notices", icon: BellRing, path: "/notices" },
+  { label: "Summary", icon: ChartNoAxesCombined, path: "/summary" },
 ];
 
+const AUTH_KEY = "society-auth";
 const AppSidebar = ({ isSidebarOpen, onCloseSidebar }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
 
   const isActive = (path) => location.pathname === path;
   const isParentActive = (item) =>
     item.children?.some((c) => location.pathname.startsWith(c.path));
+
+  const handleLogout = () => {
+    localStorage.removeItem(AUTH_KEY);
+    onCloseSidebar();
+    navigate("/login", { replace: true });
+  };
 
   return (
     <>
@@ -117,6 +137,10 @@ const AppSidebar = ({ isSidebarOpen, onCloseSidebar }) => {
         </nav>
 
         <div className="sidebar-footer">
+          <button className="sidebar-logout-btn" onClick={handleLogout}>
+            <LogOut style={{ width: 18, height: 18 }} />
+            Logout
+          </button>
           <div className="status-row">
             <span className="status-dot" />
             <span className="status-text">System Online</span>
