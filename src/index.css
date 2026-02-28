@@ -1164,6 +1164,79 @@ select.input {
   color: hsl(var(--muted-foreground));
 }
 
+/* Members page tabs + toolbar */
+.members-tabs {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 1px solid hsl(var(--border));
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.members-tab-trigger {
+  position: relative;
+  flex-shrink: 0;
+  padding: 0.85rem 0.1rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  color: #8b95a7;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.members-tab-trigger:hover {
+  color: hsl(var(--foreground));
+}
+
+.members-tab-trigger.active {
+  color: #1f2937;
+  border-bottom-color: #4f9cd8;
+}
+
+.members-card {
+  padding: 0;
+}
+
+.members-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.members-search-input {
+  position: relative;
+  flex: 1;
+}
+
+.members-search-input svg {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8a94a6;
+  pointer-events: none;
+}
+
+.members-search-field {
+  height: 2.5rem;
+  border-radius: 0.4rem;
+  padding-left: 2.4rem;
+  font-size: 0.98rem;
+}
+
+.members-status-select {
+  width: 180px;
+  height: 2.5rem;
+  border-radius: 0.4rem;
+}
+
 /* Filters row */
 .filters-row {
   padding: 1rem;
@@ -1937,6 +2010,25 @@ select.input {
 
   .tabs-trigger {
     flex-shrink: 0;
+  }
+
+  .members-tabs {
+    gap: 1rem;
+  }
+
+  .members-tab-trigger {
+    font-size: 0.8rem;
+    padding: 0.75rem 0;
+  }
+
+  .members-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .members-status-select {
+    width: 100%;
   }
 
   .registration-stepper {

@@ -207,11 +207,17 @@ const Members = () => {
         ))}
       </div>
 
-      <div className="tabs-list">
+      <div
+        className="members-tabs"
+        role="tablist"
+        aria-label="Members sections"
+      >
         {["all-members", "registration", "fee", "profile"].map((tab) => (
           <button
             key={tab}
-            className={`tabs-trigger ${activeTab === tab ? "active" : ""}`}
+            className={`members-tab-trigger ${activeTab === tab ? "active" : ""}`}
+            role="tab"
+            aria-selected={activeTab === tab}
             onClick={() => setActiveTab(tab)}
           >
             {tab === "all-members"
@@ -228,18 +234,18 @@ const Members = () => {
       {activeTab === "all-members" && (
         <div className="card members-card">
           <div className="members-toolbar">
-            <div className="search-input">
+            <div className="members-search-input">
               <Search style={{ width: 16, height: 16 }} />
               <input
-                className="input"
-                placeholder="Search by name, ID, or email..."
+                className="input members-search-field"
+                placeholder="Search by name, email, or member ID"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
 
             <select
-              className="input"
+              className="input members-status-select"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
             >
