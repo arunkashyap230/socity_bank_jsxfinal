@@ -44,6 +44,7 @@ const Login = () => {
     <div className="login-shell">
       <section className="login-brand-panel">
         <div className="login-brand-inner">
+          <p className="login-badge">Trusted Co-operative Suite</p>
           <div className="login-brand-icon">
             <Building2 />
           </div>
@@ -60,6 +61,10 @@ const Login = () => {
 
       <section className="login-form-panel">
         <form className="login-form-card" onSubmit={onSubmit}>
+          <div className="login-form-top">
+            <span className="login-form-dot" />
+            <span>Secure Login</span>
+          </div>
           <h2>Welcome Back</h2>
           <p className="login-subtitle">Sign in to your account to continue</p>
 
