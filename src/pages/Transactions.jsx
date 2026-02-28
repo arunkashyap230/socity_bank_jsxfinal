@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 const transactions = [
@@ -57,6 +57,10 @@ const Transactions = () => {
   const members = useSelector((state) => state.members.items);
   const [activeTab, setActiveTab] = useState("deposit");
   const [selectedMember, setSelectedMember] = useState("");
+  const [withdrawForm, setWithdrawForm] = useState({
+    amount: "",
+    narration: "",
+  });
   const [transferForm, setTransferForm] = useState({
     fromAccount: "",
     transferTo: "",
@@ -68,6 +72,20 @@ const Transactions = () => {
   const historyRows = useMemo(() => {
     if (!selectedMember) return historySeed;
     return historySeed.filter((row) => row.memberId === selectedMember);
+  }, [selectedMember]);
+
+  const updateWithdrawField = (field, value) => {
+    setWithdrawForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const resetWithdrawForm = () => {
+    setWithdrawForm({ amount: "", narration: "" });
+  };
+
+  useEffect(() => {
+    if (!selectedMember) {
+      setWithdrawForm({ amount: "", narration: "" });
+    }
   }, [selectedMember]);
 
   const updateTransferField = (field, value) => {
@@ -94,7 +112,7 @@ const Transactions = () => {
         </select>
       </div>
 
-      <div className="tabs-list">
+      <div className="tabs-list transaction-tabs">
         {["deposit", "withdrawal", "transfer", "history"].map((tab) => (
           <button
             key={tab}
@@ -177,8 +195,53 @@ const Transactions = () => {
       )}
 
       {activeTab === "withdrawal" && (
-        <div className="card placeholder-box">
-          Withdrawal module coming soon
+        <div className="card withdrawal-card">
+          <p className="withdrawal-subtitle">
+            Please select a member to perform transactions
+          </p>
+
+          <div className="withdrawal-form">
+            <div className="form-group">
+              <label>Amount *</label>
+              <input
+                className="input"
+                type="number"
+                placeholder="Amount *"
+                value={withdrawForm.amount}
+                onChange={(e) => updateWithdrawField("amount", e.target.value)}
+                disabled={!selectedMember}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Narration</label>
+              <input
+                className="input"
+                placeholder="Narration"
+                value={withdrawForm.narration}
+                onChange={(e) =>
+                  updateWithdrawField("narration", e.target.value)
+                }
+                disabled={!selectedMember}
+              />
+            </div>
+
+            <div className="withdrawal-actions">
+              <button
+                className="btn btn-primary"
+                disabled={!selectedMember || !withdrawForm.amount}
+              >
+                WITHDRAW
+              </button>
+              <button
+                className="btn btn-outline"
+                onClick={resetWithdrawForm}
+                type="button"
+              >
+                RESET
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
